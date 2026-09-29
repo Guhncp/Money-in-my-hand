@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="adult-male">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Money in My Hand | Controle Financeiro Pessoal</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            theme: {
+              base: 'var(--color-bg-base)',
+              surface: 'var(--color-bg-surface)',
+              subtle: 'var(--color-bg-subtle)',
+              border: 'var(--color-border)',
+              text: 'var(--color-text)',
+              muted: 'var(--color-muted)',
+              accent: 'var(--color-accent)',
+              accentHover: 'var(--color-accent-hover)',
+              accentLight: 'var(--color-accent-light)',
+              success: 'var(--color-success)',
+              danger: 'var(--color-danger)',
+            }
+          },
+          borderRadius: {
+            theme: 'var(--radius-theme)',
+          },
+          boxShadow: {
+            'theme-card': 'var(--shadow-card)',
+            'theme-glow': 'var(--shadow-glow)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 1. Tema Default / Adulto Masculino (19+ anos) */
+    :root, [data-theme='adult-male'] {
+      --color-bg-base: #0b0f19;
+      --color-bg-surface: #131c2e;
+      --color-bg-subtle: #1e293b;
+      --color-border: #22324e;
+      --color-text: #f8fafc;
+      --color-muted: #94a3b8;
+      --color-accent: #3b82f6;
+      --color-accent-hover: #2563eb;
+      --color-accent-light: rgba(59, 130, 246, 0.15);
+      --color-success: #10b981;
+      --color-danger: #f43f5e;
+      --radius-theme: 0.5rem;
+      --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+      --shadow-glow: 0 0 25px rgba(59, 130, 246, 0.25);
+      --font-theme: "Plus Jakarta Sans", sans-serif;
+    }
+
+    /* 2. Tema Jovem Masculino (Até 18 anos) - Gamer / Cyber / Neon */
+    [data-theme='young-male'] {
+      --color-bg-base: #060911;
+      --color-bg-surface: #0e1526;
+      --color-bg-subtle: #16223b;
+      --color-border: #10b981;
+      --color-text: #e0f2fe;
+      --color-muted: #64748b;
+      --color-accent: #10b981;
+      --color-accent-hover: #059669;
+      --color-accent-light: rgba(16, 185, 129, 0.18);
+      --color-success: #22c55e;
+      --color-danger: #ef4444;
+      --radius-theme: 0.75rem;
+      --shadow-card: 0 0 20px rgba(16, 185, 129, 0.15);
+      --shadow-glow: 0 0 30px rgba(16, 185, 129, 0.4);
+      --font-theme: "JetBrains Mono", monospace;
+    }
+
+    /* 3. Tema Jovem Feminina (Até 18 anos) - Pop / Vibrante / Curvas */
+    [data-theme='young-female'] {
+      --color-bg-base: #0e0917;
+      --color-bg-surface: #1e1330;
+      --color-bg-subtle: #2d1c47;
+      --color-border: #f43f5e;
+      --color-text: #fff1f2;
+      --color-muted: #cbd5e1;
+      --color-accent: #ec4899;
+      --color-accent-hover: #db2777;
+      --color-accent-light: rgba(236, 72, 153, 0.2);
+      --color-success: #34d399;
+      --color-danger: #fb7185;
+      --radius-theme: 1.25rem;
+      --shadow-card: 0 10px 30px -5px rgba(236, 72, 153, 0.2);
+      --shadow-glow: 0 0 30px rgba(236, 72, 153, 0.35);
+      --font-theme: "Inter", sans-serif;
+    }
+
+    /* 4. Tema Adulto Feminina (19+ anos) - Sofisticada / Quiet Luxury */
+    [data-theme='adult-female'] {
+      --color-bg-base: #141112;
+      --color-bg-surface: #1d181a;
+      --color-bg-subtle: #292224;
+      --color-border: #44373a;
+      --color-text: #faf7f7;
+      --color-muted: #b5a4a7;
+      --color-accent: #fb7185;
+      --color-accent-hover: #f43f5e;
+      --color-accent-light: rgba(251, 113, 133, 0.15);
+      --color-success: #10b981;
+      --color-danger: #e11d48;
+      --radius-theme: 0.85rem;
+      --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.35);
+      --shadow-glow: 0 0 25px rgba(251, 113, 133, 0.2);
+      --font-theme: "Plus Jakarta Sans", sans-serif;
+    }
+
+    body {
+      background-color: var(--color-bg-base);
+      color: var(--color-text);
+      font-family: var(--font-theme);
+      min-height: 100dvh;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .pb-safe { padding-bottom: max(0.5rem, env(safe-area-inset-bottom)); }
+    .pt-safe { padding-top: max(0.5rem, env(safe-area-inset-top)); }
+  </style>
+</head>
+<body class="flex flex-col antialiased">
+
+  <!-- ==================== TELA DE LOGIN & CADASTRO ==================== -->
+  <div id="loginScreen" class="min-h-[100dvh] flex items-center justify-center p-4 relative overflow-hidden pt-safe pb-safe">
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-theme-accent/20 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="w-full max-w-md relative z-10 p-6 sm:p-8 rounded-theme bg-theme-surface border border-theme-border/80 shadow-theme-glow">
+      <div class="text-center mb-6">
+        <div class="w-14 h-14 mx-auto rounded-theme bg-theme-accent/20 border border-theme-accent/40 flex items-center justify-center text-theme-accent mb-4 shadow-theme-glow">
+          <i data-lucide="wallet" class="w-7 h-7"></i>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+          Money in My <span class="text-theme-accent">Hand</span>
+        </h1>
+        <p class="text-xs sm:text-sm text-theme-muted mt-2">
+          Controle financeiro inteligente adaptado a você.
+        </p>
+      </div>
+
+      <!-- Mode Switcher (Login/Register) -->
+      <div id="authModeTabs" class="flex bg-theme-subtle p-1 rounded-theme mb-6">
+        <button id="tabLogin" type="button" onclick="setAuthMode('login')" class="w-1/2 py-1.5 text-sm font-bold bg-theme-surface rounded shadow-sm text-theme-text transition-all">Entrar</button>
+        <button id="tabRegister" type="button" onclick="setAuthMode('register')" class="w-1/2 py-1.5 text-sm font-medium text-theme-muted hover:text-theme-text transition-all">Cadastrar</button>
+      </div>
+
+      <!-- Form: Login -->
+      <form id="loginForm" class="space-y-4">
+        <div>
+          <label class="text-xs font-bold uppercase tracking-wider text-theme-muted block mb-1.5">E-mail</label>
+          <div class="relative">
+            <input type="email" id="loginEmail" value="teste@email.com" class="w-full bg-theme-subtle border border-theme-border rounded-theme px-3.5 py-2.5 text-sm text-theme-text placeholder:text-theme-muted/50 focus:outline-none focus:border-theme-accent" required />
+            <i data-lucide="mail" class="w-4 h-4 text-theme-muted absolute right-3.5 top-3 pointer-events-none"></i>
+          </div>
+        </div>
+
+        <div>
+          <label class="text-xs font-bold uppercase tracking-wider text-theme-muted block mb-1.5">Senha</label>
+          <div class="relative">
+            <input type="password" value="******" class="w-full bg-theme-subtle border border-theme-border rounded-theme px-3.5 py-2.5 text-sm text-theme-text placeholder:text-theme-muted/50 focus:outline-none focus:border-theme-accent" required />
+            <i data-lucide="lock" class="w-4 h-4 text-theme-muted absolute right-3.5 top-3 pointer-events-none"></i>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full mt-2 py-3 px-4 rounded-theme bg-theme-accent text-white font-bold hover:bg-theme-accentHover shadow-theme-glow transition-all flex items-center justify-center gap-2">
+          <span>Acessar Painel</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </form>
+
+      <!-- Form: Register -->
+      <form id="registerForm" class="space-y-4 hidden">
+        <div>
+          <label class="text-xs font-bold uppercase tracking-wider text-theme-muted block mb-1.5">Nome ou Apelido</label>
+          <div class="relative">
+            <input type="text" id="regName" placeholder="Como quer ser chamado?" class="w-full bg-theme-subtle border border-theme-border rounded-theme px-3.5 py-2.5 text-sm text-theme-text placeholder:text-theme-muted/50 focus:outline-none focus:border-theme-accent" required />
+            <i data-lucide="user" class="w-4 h-4 text-theme-muted absolute right-3.5 top-3 pointer-events-none"></i>
+          </div>
+        </div>
+
+        <div>
+          <label class="text-xs font-bold uppercase tracking-wider text-theme-muted block mb-1.5">E-mail</label>
+          <div class="relative">
+            <input type="email" id="regEmail" placeholder="seu@email.com" class="w-full bg-theme-subtle border border-theme-border rounded-theme px-3.5 py-2.5 text-sm text-theme-text placeholder:text-theme-muted/50 focus:outline-none focus:border-theme-accent" required />
+            <i data-lucide="mail" class="w-4 h-4 text-theme-muted absolute right-3.5 top-3 pointer-events-none"></i>
+          </div>
+        </div>
+
+        <div>
+          <label class="text-xs font-bold uppercase tracking-wider text-theme-muted block mb-1.5">Criar Senha</label>
+          <div class="relative">
+            <input type="password" placeholder="••••••••" class="w-full bg-theme-subtle border border-theme-border rounded-theme px-3.5 py-2.5 text-sm text-theme-text placeholder:text-theme-muted/50 focus:outline-none focus:border-theme-accent" required />
+            <i data-lucide="lock" class="w-4 h-4 text-theme-muted absolute right-3.5 top-3 pointer-events-none"></i>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full mt-2 py-3 px-4 rounded-theme bg-theme-accent text-white font-bold hover:bg-theme-accentHover shadow-theme-glow transition-all flex items-center justify-center gap-2">
+          <span>Criar Conta</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </form>
+
+      <!-- Form: Verify Email -->
+      <form id="verifyForm" class="space-y-4 hidden">
+        <div class="text-center mb-4">
+          <div class="w-12 h-12 mx-auto bg-theme-accentLight text-theme-accent rounded-full flex items-center justify-center mb-3">
+            <i data-lucide="mail" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold">Verifique seu E-mail</h3>
+          <p class="text-xs text-theme-muted mt-1">Enviamos um código para o e-mail cadastrado.</p>
+        </div>
+        
+        <div>
+          <label class="text-xs font-bold uppercase tracking-wider text-theme-muted block mb-1.5 text-center">Código de Confirmação</label>
+          <input type="text" id="verifyCode" maxlength="6" placeholder="Ex: 123456" class="w-full bg-theme-subtle border border-theme-border rounded-theme px-3.5 py-3 text-xl tracking-widest font-bold text-center text-theme-text focus:outline-none focus:border-theme-accent" required />
+          <p id="verifyError" class="text-theme-danger text-xs text-center mt-2 hidden">Código inválido. Digite 123456.</p>
+        </div>
+
+        <button type="submit" class="w-full mt-2 py-3 px-4 rounded-theme bg-theme-accent text-white font-bold hover:bg-theme-accentHover shadow-theme-glow transition-all flex items-center justify-center gap-2">
+          <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+          <span>Confirmar Cadastro</span>
+        </button>
+        
+        <button type="button" onclick="setAuthMode('login')" class="w-full mt-2 text-xs text-theme-muted hover:text-theme-text text-center block">Voltar ao Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== APLICAÇÃO PRINCIPAL ==================== -->
+  <div id="appContainer" class="hidden flex-col min-h-[100dvh] pb-24 md:pb-12 pt-safe">
+    <!-- Top Header -->
+    <header class="sticky top-0 z-40 w-full bg-theme-surface/90 backdrop-blur-md border-b border-theme-border/60">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center gap-2.5 cursor-pointer" onclick="switchTab('overview')">
+          <div class="w-10 h-10 rounded-theme bg-theme-accent/15 border border-theme-accent/40 flex items-center justify-center text-theme-accent shadow-theme-glow shrink-0">
+            <i data-lucide="wallet" class="w-5 h-5"></i>
+          </div>
+          <div class="hidden sm:block">
+            <div class="flex items-center gap-1.5">
+              <span class="font-extrabold text-base sm:text-lg tracking-tight">
+                Money in My <span class="text-theme-accent">Hand</span>
+              </span>
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-theme-accent hidden sm:inline"></i>
+            </div>
+            <p class="text-[10px] text-theme-muted font-semibold tracking-wide uppercase">Controle Financeiro</p>
+          </div>
+        </div>
+
+        <!-- Header Actions -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <!-- Theme Switcher Badge Button -->
+          <div class="relative">
+            <button id="themePickerBtn" onclick="toggleThemeDropdown()" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-theme bg-theme-subtle border border-theme-border text-xs hover:border-theme-accent transition-colors">
+              <span id="headerThemeIcon">💼</span>
+              <span id="headerThemeLabel" class="hidden md:inline font-medium">Adulto Executivo</span>
+              <span id="headerThemeBadge" class="text-[10px] text-theme-accent font-bold px-1.5 py-0.5 rounded-full bg-theme-accentLight">Slate</span>
+            </button>
+
+            <!-- Dropdown -->
+            <div id="themeDropdown" class="hidden absolute right-0 mt-2 w-56 bg-theme-surface border border-theme-border rounded-theme shadow-theme-card p-2 z-50">
+              <div class="text-[10px] font-bold text-theme-muted uppercase px-2 py-1">Trocar Tema Dinâmico:</div>
+              <button onclick="setDirectTheme('young-male')" class="w-full text-left px-2.5 py-1.5 rounded-theme text-xs flex items-center justify-between text-theme-text hover:bg-theme-subtle">
+                <span>🎮 Jovem Gamer</span>
+                <span class="text-[10px] text-emerald-400">Até 18h</span>
+              </button>
+              <button onclick="setDirectTheme('young-female')" class="w-full text-left px-2.5 py-1.5 rounded-theme text-xs flex items-center justify-between text-theme-text hover:bg-theme-subtle">
+                <span>✨ Jovem Pop</span>
+                <span class="text-[10px] text-pink-400">Até 18m</span>
+              </button>
+              <button onclick="setDirectTheme('adult-male')" class="w-full text-left px-2.5 py-1.5 rounded-theme text-xs flex items-center justify-between text-theme-text hover:bg-theme-subtle">
+                <span>💼 Adulto Executivo</span>
+                <span class="text-[10px] text-blue-400">19+ h</span>
+              </button>
+              <button onclick="setDirectTheme('adult-female')" class="w-full text-left px-2.5 py-1.5 rounded-theme text-xs flex items-center justify-between text-theme-text hover:bg-theme-subtle">
+                <span>💎 Adulto Sofisticada</span>
+                <span class="text-[10px] text-rose-400">19+ m</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Profile Config Button -->
+          <button onclick="openProfileModal()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-theme bg-theme-subtle border border-theme-border text-xs hover:border-theme-accent transition-colors">
+            <i data-lucide="user" class="w-4 h-4 text-theme-accent"></i>
+            <span id="headerUserName" class="hidden sm:inline font-medium">Gustavo</span>
+            <i data-lucide="sliders-horizontal" class="w-3 h-3 text-theme-muted hidden sm:inline"></i>
+          </button>
+
+          <!-- Logout -->
+          <button onclick="handleLogout()" class="p-2 rounded-theme text-theme-muted hover:text-theme-danger hover:bg-theme-subtle transition-colors" title="Sair">
+            <i data-lucide="log-out" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 w-full flex-1">
+      <!-- Desktop Segmented Tabs -->
+      <div class="hidden md:flex items-center gap-2 p-1.5 bg-theme-surface border border-theme-border/70 rounded-theme max-w-fit mx-auto mb-6 shadow-theme-card">
+        <button id="deskTabOverview" onclick="switchTab('overview')" class="flex items-center gap-2 px-5 py-2.5 rounded-theme text-sm font-semibold transition-all bg-theme-accent text-white shadow-theme-glow">
+          <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+          <span>Visão Geral</span>
+        </button>
+        <button id="deskTabExpenses" onclick="switchTab('expenses')" class="flex items-center gap-2 px-5 py-2.5 rounded-theme text-sm font-semibold transition-all text-theme-muted hover:text-theme-text hover:bg-theme-subtle/70">
+          <i data-lucide="arrow-down-circle" class="w-4 h-4"></i>
+          <span>Saídas & Despesas</span>
+        </button>
+        <button id="deskTabGoals" onclick="switchTab('goals')" class="flex items-center gap-2 px-5 py-2.5 rounded-theme text-sm font-semibold transition-all text-theme-muted hover:text-theme-text hover:bg-theme-subtle/70">
+          <i data-lucide="target" class="w-4 h-4"></i>
+          <span>Metas & Sonhos</span>
+        </button>
+      </div>
+
+      <!-- ================= ABA 1: VISÃO GERAL ================= -->
+      <div id="tabOverview" class="space-y-6">
+        <!-- Salário Top Card -->
+        <div class="p-5 rounded-theme bg-theme-surface border border-theme-border/70 shadow-theme-card flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-center gap-3.5">
+            <div class="p-3 rounded-theme bg-theme-accentLight text-theme-accent shadow-theme-glow">
+              <i data-lucide="coins" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-theme-muted">Salário / Renda Principal Mensal</span>
+                <button onclick="toggleEditSalary()" class="text-theme-muted hover:text-theme-accent transition-colors" title="Editar Salário">
+                  <i data-lucide="pencil" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+              <div id="salaryDisplay" class="text-2xl sm:text-3xl font-extrabold text-theme-text">R$ 4.500,00</div>
+              <div id="salaryEditForm" class="hidden items-center gap-2 mt-1">
+                <input type="number" id="salaryInput" value="4500" class="w-36 px-2.5 py-1 text-base bg-theme-subtle border border-theme-border rounded-theme text-theme-text focus:outline-none focus:border-theme-accent" />
+                <button onclick="saveSalary()" class="px-3 py-1.5 rounded-theme bg-theme-accent text-white font-semibold text-xs">Salvar</button>
+              </div>
+            </div>
+          </div>
+          <span class="text-xs font-medium text-theme-muted bg-theme-subtle px-3 py-1.5 rounded-theme border border-theme-border/60 self-start sm:self-center shrink-0">
+            Mês Vigente
+          </span>
+        </div>
+
+        <!-- 2 Big Cards: Despesas & Money in My Hand -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Despesas -->
+          <div class="p-5 rounded-theme bg-theme-surface border border-theme-border/60 shadow-theme-card flex flex-col justify-between">
+            <div class="flex items-start justify-between">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-wider text-theme-muted">Total de Saídas no Mês</p>
+                <h3 id="overviewTotalExpenses" class="text-3xl font-extrabold text-theme-danger mt-1">R$ 0,00</h3>
+              </div>
+              <div class="p-3 rounded-theme bg-red-500/10 text-theme-danger border border-red-500/20">
+                <i data-lucide="trending-down" class="w-6 h-6"></i>
+              </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-theme-border/40 flex items-center justify-between">
+              <span id="overviewSpentPercent" class="text-xs text-theme-muted flex items-center gap-1">
+                <i data-lucide="percent" class="w-3.5 h-3.5 text-theme-danger"></i> Consumiu <strong>0%</strong> da renda
+              </span>
+              <button onclick="switchTab('expenses')" class="px-3 py-1.5 rounded-theme border border-theme-border text-xs font-semibold hover:border-theme-accent hover:text-theme-accent transition-colors flex items-center gap-1">
+                <span>Ver Saídas</span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Saldo Atual (Money in My Hand) -->
+          <div class="p-5 rounded-theme bg-theme-surface border border-theme-accent/60 shadow-theme-glow flex flex-col justify-between">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <p class="text-xs font-bold uppercase tracking-wider text-theme-accent">Money in My Hand (Saldo Atual)</p>
+                  <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-theme-accentLight text-theme-accent">Disponível</span>
+                </div>
+                <h2 id="overviewCurrentBalance" class="text-3xl sm:text-4xl font-extrabold mt-1 text-theme-success">R$ 0,00</h2>
+              </div>
+              <div class="p-3 rounded-theme bg-theme-accentLight text-theme-accent shadow-theme-glow">
+                <i data-lucide="wallet" class="w-7 h-7"></i>
+              </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-theme-border/40 flex items-center justify-between">
+              <p class="text-xs text-theme-muted">Você está no positivo! Bom momento para guardar para suas metas.</p>
+              <button onclick="switchTab('goals')" class="px-3 py-1.5 rounded-theme bg-theme-accent text-white text-xs font-semibold shadow-theme-glow flex items-center gap-1 shrink-0 ml-2">
+                <i data-lucide="target" class="w-3.5 h-3.5"></i>
+                <span>Ver Metas</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shortcuts -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div onclick="switchTab('expenses')" class="flex items-center justify-between p-4 rounded-theme bg-theme-surface border border-theme-border hover:border-theme-accent hover:shadow-theme-glow transition-all cursor-pointer group">
+            <div class="flex items-center gap-3">
+              <div class="p-2.5 rounded-theme bg-theme-accentLight text-theme-accent group-hover:scale-110 transition-transform">
+                <i data-lucide="plus-circle" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="text-sm font-bold">Adicionar Nova Despesa</h4>
+                <p class="text-xs text-theme-muted">Registre gastos do dia a dia</p>
+              </div>
+            </div>
+            <i data-lucide="arrow-up-right" class="w-5 h-5 text-theme-muted group-hover:text-theme-accent transition-colors"></i>
+          </div>
+
+          <div onclick="switchTab('goals')" class="flex items-center justify-between p-4 rounded-theme bg-theme-surface border border-theme-border hover:border-theme-accent hover:shadow-theme-glow transition-all cursor-pointer group">
+            <div class="flex items-center gap-3">
+              <div class="p-2.5 rounded-theme bg-theme-accentLight text-theme-accent group-hover:scale-110 transition-transform">
+                <i data-lucide="target" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="text-sm font-bold">Acompanhar Metas e Sonhos</h4>
+                <p class="text-xs text-theme-muted">Barras de progresso e valores guardados</p>
+              </div>
+            </div>
+            <i data-lucide="arrow-up-right" class="w-5 h-5 text-theme-muted group-hover:text-theme-accent transition-colors"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= ABA 2: SAÍDAS & DESPESAS ================= -->
+      <div id="tabExpenses" class="hidden space-y-6">
+        <!-- Form Adicionar Gasto -->
+        <div class="p-5 rounded-theme bg-theme-surface border border-theme-border/80 shadow-theme-card">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="p-2 rounded-theme bg-theme-accentLight text-theme-accent shrink-0">
+              <i data-lucide="plus-circle" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="text-base font-bold">Registrar Nova Despesa</h3>
+              <p class="text-xs text-theme-muted">Adicione saídas com valor, categoria e data</p>
+            </div>
+          </div>
+
+          <form id="expenseForm" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+              <div class="md:col-span-2">
+                <label class="text-xs font-semibold uppercase tracking-wider text-theme-muted block mb-1">Descrição</label>
+                <input type="text" id="expenseTitle" placeholder="Ex: Mercado, Uber, Lanche..." class="w-full bg-theme-subtle border border-theme-border rounded-theme px-3 py-2 text-sm text-theme-text focus:outline-none focus:border-theme-accent" required />
+              </div>
+              <div>
+                <label class="text-xs font-semibold uppercase tracking-wider text-theme-muted block mb-1">Valor (R$)</label>
+                <input type="number" id="expenseAmount" step="0.01" min="0.01" placeholder="0,00" class="w-full bg-theme-subtle border border-theme-border rounded-theme px-3 py-2 text-sm text-theme-text focus:outline-none focus:border-theme-accent" required />
+              </div>
+              <div>
+                <label class="text-xs font-semibold uppercase tracking-wider text-theme-muted block mb-1">Data</label>
+                <input type="date" id="expenseDate" class="w-full bg-theme-subtle border border-theme-border rounded-theme px-3 py-2 text-sm text-theme-text focus:outline-none focus:border-theme-accent" required />
+              </div>
+            </div>
+
+            <!-- Categories -->
+            <div>
+              <label class="text-xs font-semibold uppercase tracking-wider text-theme-muted block mb-2">Categoria</label>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="categoryChips">
+                <!-- Injected via JS -->
+              </div>
+            </div>
+
+            <div class="flex justify-end pt-2">
+              <button type="submit" class="w-full sm:w-auto px-5 py-2.5 rounded-theme bg-theme-accent text-white font-bold text-sm shadow-theme-glow flex items-center justify-center gap-2">
+                <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                <span>Adicionar Despesa</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Lista de Despesas -->
+        <div class="p-5 rounded-theme bg-theme-surface border border-theme-border/60 shadow-theme-card">
+          <div class="flex items-center justify-between mb-4 pb-3 border-b border-theme-border/50">
+            <div>
+              <h3 class="text-base font-bold">Histórico de Saídas</h3>
+              <p id="txCountLabel" class="text-xs text-theme-muted">0 registros neste mês</p>
+            </div>
+            <div class="text-right">
+              <span class="text-[10px] uppercase font-bold text-theme-muted block">Total Saídas</span>
+              <span id="txTotalLabel" class="text-base sm:text-lg font-extrabold text-theme-danger">R$ 0,00</span>
+            </div>
+          </div>
+
+          <div id="txListContainer" class="divide-y divide-theme-border/40">
+            <!-- Transactions injected via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= ABA 3: METAS & SONHOS ================= -->
+      <div id="tabGoals" class="hidden space-y-6">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-extrabold flex items-center gap-2">
+              <i data-lucide="target" class="w-6 h-6 text-theme-accent"></i>
+              <span>Metas & Sonhos</span>
+            </h2>
+            <p class="text-xs sm:text-sm text-theme-muted mt-1">
+              Guarde seu "Money in My Hand" para realizar seus objetivos.
+            </p>
+          </div>
+          <button onclick="toggleAddGoalForm()" class="px-4 py-2.5 rounded-theme bg-theme-accent text-white font-bold text-sm shadow-theme-glow flex items-center gap-2 w-full sm:w-auto justify-center">
+            <i data-lucide="plus-circle" class="w-4 h-4"></i>
+            <span>Nova Meta</span>
+          </button>
+        </div>
+
+        <!-- Form Nova Meta (Expandable) -->
+        <div id="newGoalCard" class="hidden p-5 rounded-theme bg-theme-surface border border-theme-accent/60 shadow-theme-glow">
+          <h3 class="text-sm font-bold mb-3 flex items-center gap-2">
+            <i data-lucide="sparkles" class="w-4 h-4 text-theme-accent"></i>
+            <span>Cadastrar Sonho / Meta Financeira</span>
+          </h3>
+          <form id="newGoalForm" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+              <div>
+                <label class="text-xs font-semibold uppercase text-theme-muted block mb-1">Título do Objetivo</label>
+                <input type="text" id="goalTitle" placeholder="Ex: PC Gamer, Carro, Viagem..." class="w-full bg-theme-subtle border border-theme-border rounded-theme px-3 py-2 text-sm text-theme-text focus:outline-none focus:border-theme-accent" required />
+              </div>
+              <div>
+                <label class="text-xs font-semibold uppercase text-theme-muted block mb-1">Valor Alvo (R$)</label>
+                <input type="number" id="goalTarget" step="0.01" min="1" placeholder="5000,00" class="w-full bg-theme-subtle border border-theme-border rounded-theme px-3 py-2 text-sm text-theme-text focus:outline-none focus:border-theme-accent" required />
+              </div>
+              <div>
+                <label class="text-xs font-semibold uppercase text-theme-muted block mb-1">Já Guardado (R$)</label>
+                <input type="number" id="goalCurrent" step="0.01" min="0" placeholder="0,00" value="0" class="w-full bg-theme-subtle border border-theme-border rounded-theme px-3 py-2 text-sm text-theme-text focus:outline-none focus:border-theme-accent" />
+              </div>
+            </div>
+            <div class="flex justify-end gap-2">
+              <button type="button" onclick="toggleAddGoalForm()" class="px-4 py-2 text-xs font-semibold text-theme-muted hover:text-theme-text">Cancelar</button>
+              <button type="submit" class="px-5 py-2 rounded-theme bg-theme-accent text-white font-bold text-xs shadow-theme-glow">Salvar Meta</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Grid de Metas -->
+        <div id="goalsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+    </main>
+
+    <!-- Mobile Floating Bottom Bar -->
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-theme-surface/95 backdrop-blur-lg border-t border-theme-border/80 pb-safe">
+      <div class="flex items-center justify-around max-w-md mx-auto pt-2 pb-1 px-4">
+        <button id="mobTabOverview" onclick="switchTab('overview')" class="flex flex-col items-center justify-center py-1 px-3 text-theme-accent font-bold scale-105">
+          <div class="p-1.5 rounded-theme bg-theme-accentLight"><i data-lucide="layout-dashboard" class="w-5 h-5"></i></div>
+          <span class="text-[11px] mt-0.5">Início</span>
+        </button>
+        <button id="mobTabExpenses" onclick="switchTab('expenses')" class="flex flex-col items-center justify-center py-1 px-3 text-theme-muted font-medium">
+          <div class="p-1.5 rounded-theme"><i data-lucide="arrow-down-circle" class="w-5 h-5"></i></div>
+          <span class="text-[11px] mt-0.5">Saídas</span>
+        </button>
+        <button id="mobTabGoals" onclick="switchTab('goals')" class="flex flex-col items-center justify-center py-1 px-3 text-theme-muted font-medium">
+          <div class="p-1.5 rounded-theme"><i data-lucide="target" class="w-5 h-5"></i></div>
+          <span class="text-[11px] mt-0.5">Metas</span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ==================== MODAL DE PERFIL & TEMAS ==================== -->
+  <div id="profileModal" class="hidden fixed inset-0 z-50 items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+    <div class="w-full max-w-lg p-6 rounded-theme bg-theme-surface border border-theme-accent/60 shadow-theme-glow relative max-h-[90vh] overflow-y-auto pt-safe">
+      <button id="closeProfileBtn" onclick="closeProfileModal()" class="absolute top-4 right-4 p-1.5 text-theme-muted hover:text-theme-text">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-5">
+        <div class="p-2.5 rounded-theme bg-theme-accentLight text-theme-accent shrink-0">
+          <i data-lucide="sparkles" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h2 id="profileModalTitle" class="text-lg sm:text-xl font-bold">Configuração de Perfil</h2>
+          <p id="profileModalDesc" class="text-xs text-theme-muted">A interface adapta cores, tipografia e estilo ao seu perfil</p>
+        </div>
+      </div>
+
+      <form id="profileForm" class="space-y-5">
+        <!-- Gênero -->
+        <div>
+          <label class="text-xs font-bold uppercase tracking-wider text-theme-muted mb-2 block">Gênero</label>
+          <div class="grid grid-cols-2 gap-3">
+            <button type="button" id="btnGenderMale" onclick="selectGender('male')" class="flex items-center justify-center gap-2 p-3 rounded-theme border border-theme-accent bg-theme-accentLight text-theme-accent font-bold">
+              <i data-lucide="user" class="w-4 h-4"></i>
+              <span>Homem</span>
+            </button>
+            <button type="button" id="btnGenderFemale" onclick="selectGender('female')" class="flex items-center justify-center gap-2 p-3 rounded-theme border border-theme-border bg-theme-subtle text-theme-muted">
+              <i data-lucide="user" class="w-4 h-4"></i>
+              <span>Mulher</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Idade -->
+        <div class="bg-theme-subtle/40 p-4 rounded-theme border border-theme-border/60">
+          <div class="flex justify-between items-center mb-1.5">
+            <label class="text-xs font-bold uppercase tracking-wider text-theme-muted">Idade</label>
+            <span id="ageLabel" class="text-sm font-extrabold text-theme-accent px-2 py-0.5 rounded bg-theme-subtle border border-theme-border/40">22 anos</span>
+          </div>
+          <input type="range" id="ageSlider" min="12" max="70" value="22" oninput="onAgeSlide(this.value)" class="w-full accent-theme-accent cursor-pointer mb-2" />
+          <div class="flex justify-between text-[11px] text-theme-muted mt-1">
+            <span>12 anos (Jovem)</span>
+            <span>18 anos</span>
+            <span>70 anos (Adulto)</span>
+          </div>
+          
+          <!-- Age confirmation for first time -->
+          <label id="ageConfirmContainer" class="flex items-start gap-2 mt-4 cursor-pointer group">
+            <input type="checkbox" id="ageConfirmCheck" class="mt-0.5 w-4 h-4 border border-theme-border rounded bg-theme-surface checked:bg-theme-accent" required />
+            <span class="text-xs text-theme-muted group-hover:text-theme-text transition-colors">
+              Confirmo que tenho exatamente <strong id="ageConfirmLabel">22 anos</strong> de idade.
+            </span>
+          </label>
+        </div>
+
+        <!-- Preview Card -->
+        <div id="themePreviewBox" class="p-4 rounded-theme bg-theme-subtle/80 border border-theme-border/80">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="text-[10px] font-bold uppercase text-theme-muted">Tema Resultante:</span>
+            <span id="themePreviewBadge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-theme-accentLight text-theme-accent">19+ Masculino</span>
+          </div>
+          <h4 id="themePreviewName" class="text-sm font-bold text-theme-text">Tema Adulto Executivo (Sóbrio & Minimalista)</h4>
+          <p id="themePreviewDesc" class="text-[11px] text-theme-muted mt-1 leading-relaxed">Visual minimalista com tons de azul marinho profundo, ardósia e foco na tomada de decisão.</p>
+        </div>
+
+        <button type="submit" id="profileSaveBtn" class="w-full py-3 rounded-theme bg-theme-accent text-white font-bold text-sm shadow-theme-glow disabled:opacity-50">
+          Salvar e Aplicar Tema
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL DE APORTE NA META ==================== -->
+  <div id="depositModal" class="hidden fixed inset-0 z-50 items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div class="w-full max-w-sm p-6 rounded-theme bg-theme-surface border border-theme-accent shadow-theme-glow pt-safe">
+      <div class="flex justify-between items-center mb-3">
+        <h4 class="text-sm font-bold flex items-center gap-2">
+          <i data-lucide="coins" class="w-4 h-4 text-theme-accent"></i>
+          <span>Guardar Dinheiro na Meta</span>
+        </h4>
+        <button onclick="closeDepositModal()" class="text-theme-muted hover:text-theme-text"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+      <p id="depositTargetTitle" class="text-xs text-theme-muted mb-4 font-medium">Meta: PC Gamer</p>
+      <form id="depositForm" class="space-y-4">
+        <div>
+          <label class="text-xs font-semibold uppercase text-theme-muted block mb-1">Valor a Guardar (R$)</label>
+          <input type="number" id="depositAmount" step="0.01" min="0.01" placeholder="Ex: 150,00" class="w-full bg-theme-subtle border border-theme-border rounded-theme px-3 py-2 text-sm text-theme-text focus:outline-none focus:border-theme-accent" required />
+        </div>
+        <div class="flex gap-2">
+          <button type="button" onclick="closeDepositModal()" class="w-1/2 py-2 text-xs font-semibold text-theme-muted hover:text-theme-text">Cancelar</button>
+          <button type="submit" class="w-1/2 py-2 rounded-theme bg-theme-accent text-white font-bold text-xs shadow-theme-glow">Confirmar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== LOGIC / JAVASCRIPT ==================== -->
+  <script>
+    // App State
+    let currentUser = {
+      username: '',
+      email: '',
+      age: 22,
+      gender: 'male',
+      theme: 'adult-male',
+      isConfigured: false
+    };
+
+    let monthlyIncome = 4500;
+    let currentTab = 'overview';
+    let selectedCategory = 'alimentacao';
+    let currentDepositGoalId = null;
+
+    let transactions = [
+      { id: '1', title: 'Supermercado Mensal', amount: 485.50, category: 'alimentacao', date: '2026-09-24' },
+      { id: '2', title: 'Uber / Transporte', amount: 78.90, category: 'transporte', date: '2026-09-25' },
+      { id: '3', title: 'Cinema & Lazer', amount: 94.00, category: 'lazer', date: '2026-09-26' },
+      { id: '4', title: 'Curso de Especialização', amount: 150.00, category: 'educacao', date: '2026-09-27' },
+      { id: '5', title: 'Internet Fibra', amount: 120.00, category: 'moradia', date: '2026-09-28' },
+    ];
+
+    let goals = [
+      { id: 'g1', title: 'Comprar PC Gamer / Setup', targetAmount: 6500, currentAmount: 4200, category: 'Tecnologia' },
+      { id: 'g2', title: 'Viagem de Férias', targetAmount: 3000, currentAmount: 1850, category: 'Viagem' },
+      { id: 'g3', title: 'Reserva de Emergência', targetAmount: 10000, currentAmount: 7600, category: 'Segurança' },
+    ];
+
+    const CATEGORIES = [
+      { id: 'alimentacao', label: 'Alimentação', icon: 'utensils' },
+      { id: 'transporte', label: 'Transporte', icon: 'car' },
+      { id: 'lazer', label: 'Lazer & Jogos', icon: 'gamepad-2' },
+      { id: 'educacao', label: 'Educação', icon: 'graduation-cap' },
+      { id: 'saude', label: 'Saúde', icon: 'heart-pulse' },
+      { id: 'compras', label: 'Compras', icon: 'shopping-bag' },
+      { id: 'moradia', label: 'Moradia', icon: 'home' },
+      { id: 'outros', label: 'Outros', icon: 'receipt' },
+    ];
+
+    const THEME_DATA = {
+      'young-male': {
+        name: 'Tema Jovem Gamer (Neon & Cyber)',
+        desc: 'Dark mode com alto contraste neon verde e ciano, cantos nítidos e pegada gamificada.',
+        badge: 'Gamer Neon',
+        icon: '🎮',
+        headerBadge: 'Cyber'
+      },
+      'young-female': {
+        name: 'Tema Jovem Pop (Vibrante & Fluido)',
+        desc: 'Visual pop vibrante com rosa magenta, curvas fluidas e estética descontraída.',
+        badge: 'Pop Chic',
+        icon: '✨',
+        headerBadge: 'Pop'
+      },
+      'adult-male': {
+        name: 'Tema Adulto Executivo (Sóbrio & Minimalista)',
+        desc: 'Visual minimalista azul marinho e slate, linhas limpas estilo dashboard executivo.',
+        badge: 'Slate Minimal',
+        icon: '💼',
+        headerBadge: 'Executivo'
+      },
+      'adult-female': {
+        name: 'Tema Adulto Sofisticada (Elegante & Clean)',
+        desc: 'Quiet Luxury em tons quentes de rosé gold, neutros refinados e design sofisticado.',
+        badge: 'Quiet Luxury',
+        icon: '💎',
+        headerBadge: 'Sofisticada'
+      }
+    };
+
+    function resolveTheme(age, gender) {
+      if (age <= 18) {
+        return gender === 'male' ? 'young-male' : 'young-female';
+      } else {
+        return gender === 'male' ? 'adult-male' : 'adult-female';
+      }
+    }
+
+    function applyTheme(themeKey) {
+      document.documentElement.setAttribute('data-theme', themeKey);
+      currentUser.theme = themeKey;
+      const tInfo = THEME_DATA[themeKey] || THEME_DATA['adult-male'];
+      document.getElementById('headerThemeIcon').innerText = tInfo.icon;
+      document.getElementById('headerThemeLabel').innerText = tInfo.name.split(' (')[0];
+      document.getElementById('headerThemeBadge').innerText = tInfo.headerBadge;
+    }
+
+    function setDirectTheme(themeKey) {
+      applyTheme(themeKey);
+      document.getElementById('themeDropdown').classList.add('hidden');
+    }
+
+    function toggleThemeDropdown() {
+      const drop = document.getElementById('themeDropdown');
+      drop.classList.toggle('hidden');
+    }
+
+    // Modal Profile & Theme calculation
+    let tempAge = 22;
+    let tempGender = 'male';
+    let isMandatoryOnboarding = false;
+
+    function openProfileModal(isFirst = false) {
+      isMandatoryOnboarding = isFirst;
+      tempAge = currentUser.age || 22;
+      tempGender = currentUser.gender || 'male';
+      document.getElementById('ageSlider').value = tempAge;
+      onAgeSlide(tempAge);
+      selectGender(tempGender);
+
+      const closeBtn = document.getElementById('closeProfileBtn');
+      const ageConfirmCheck = document.getElementById('ageConfirmCheck');
+      
+      if (isFirst) {
+        closeBtn.classList.add('hidden');
+        document.getElementById('profileModalTitle').innerText = 'Bem-vindo, ' + (currentUser.username || 'Usuário') + '!';
+        document.getElementById('profileModalDesc').innerText = 'Configure seu perfil inicial.';
+        document.getElementById('ageConfirmContainer').classList.remove('hidden');
+        ageConfirmCheck.required = true;
+        ageConfirmCheck.checked = false;
+      } else {
+        closeBtn.classList.remove('hidden');
+        document.getElementById('profileModalTitle').innerText = 'Ajustar Perfil & Tema';
+        document.getElementById('profileModalDesc').innerText = 'A interface se adapta à sua idade e gênero.';
+        document.getElementById('ageConfirmContainer').classList.add('hidden');
+        ageConfirmCheck.required = false;
+      }
+
+      const modal = document.getElementById('profileModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeProfileModal() {
+      const modal = document.getElementById('profileModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function selectGender(gender) {
+      tempGender = gender;
+      const btnM = document.getElementById('btnGenderMale');
+      const btnF = document.getElementById('btnGenderFemale');
+      if (gender === 'male') {
+        btnM.className = 'flex items-center justify-center gap-2 p-3 rounded-theme border border-theme-accent bg-theme-accentLight text-theme-accent font-bold shadow-sm';
+        btnF.className = 'flex items-center justify-center gap-2 p-3 rounded-theme border border-theme-border bg-theme-subtle/50 text-theme-muted hover:text-theme-text';
+      } else {
+        btnF.className = 'flex items-center justify-center gap-2 p-3 rounded-theme border border-theme-accent bg-theme-accentLight text-theme-accent font-bold shadow-sm';
+        btnM.className = 'flex items-center justify-center gap-2 p-3 rounded-theme border border-theme-border bg-theme-subtle/50 text-theme-muted hover:text-theme-text';
+      }
+      updateThemePreview();
+    }
+
+    function onAgeSlide(val) {
+      tempAge = parseInt(val, 10);
+      document.getElementById('ageLabel').innerText = tempAge + (tempAge === 1 ? ' ano' : ' anos');
+      document.getElementById('ageConfirmLabel').innerText = tempAge + ' anos';
+      if (isMandatoryOnboarding) {
+        document.getElementById('ageConfirmCheck').checked = false; // Reset if age changes
+      }
+      updateThemePreview();
+    }
+
+    function updateThemePreview() {
+      const resolved = resolveTheme(tempAge, tempGender);
+      const info = THEME_DATA[resolved];
+      document.getElementById('themePreviewBadge').innerText = info.badge;
+      document.getElementById('themePreviewName').innerText = info.name;
+      document.getElementById('themePreviewDesc').innerText = info.desc;
+    }
+
+    document.getElementById('profileForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (isMandatoryOnboarding && !document.getElementById('ageConfirmCheck').checked) {
+        return;
+      }
+      currentUser.age = tempAge;
+      currentUser.gender = tempGender;
+      currentUser.isConfigured = true;
+      const resolved = resolveTheme(tempAge, tempGender);
+      applyTheme(resolved);
+      closeProfileModal();
+    });
+
+    // Login Form State
+    function setAuthMode(mode) {
+      document.getElementById('loginForm').classList.add('hidden');
+      document.getElementById('registerForm').classList.add('hidden');
+      document.getElementById('verifyForm').classList.add('hidden');
+      document.getElementById('authModeTabs').classList.add('hidden');
+
+      if (mode === 'login') {
+        document.getElementById('authModeTabs').classList.remove('hidden');
+        document.getElementById('loginForm').classList.remove('hidden');
+        document.getElementById('tabLogin').className = "w-1/2 py-1.5 text-sm font-bold bg-theme-surface rounded shadow-sm text-theme-text transition-all";
+        document.getElementById('tabRegister').className = "w-1/2 py-1.5 text-sm font-medium text-theme-muted hover:text-theme-text transition-all";
+      } else if (mode === 'register') {
+        document.getElementById('authModeTabs').classList.remove('hidden');
+        document.getElementById('registerForm').classList.remove('hidden');
+        document.getElementById('tabRegister').className = "w-1/2 py-1.5 text-sm font-bold bg-theme-surface rounded shadow-sm text-theme-text transition-all";
+        document.getElementById('tabLogin').className = "w-1/2 py-1.5 text-sm font-medium text-theme-muted hover:text-theme-text transition-all";
+      } else if (mode === 'verify') {
+        document.getElementById('verifyForm').classList.remove('hidden');
+      }
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      if(!email) return;
+      currentUser.email = email;
+      currentUser.username = email.split('@')[0];
+      completeAuth();
+    });
+
+    document.getElementById('registerForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('regName').value;
+      const email = document.getElementById('regEmail').value;
+      if(!name || !email) return;
+      currentUser.username = name;
+      currentUser.email = email;
+      setAuthMode('verify'); // Require email verification
+    });
+
+    document.getElementById('verifyForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const code = document.getElementById('verifyCode').value;
+      if (code !== '123456') {
+        document.getElementById('verifyError').classList.remove('hidden');
+        return;
+      }
+      completeAuth();
+    });
+
+    function completeAuth() {
+      document.getElementById('headerUserName').innerText = currentUser.username;
+      document.getElementById('loginScreen').classList.add('hidden');
+      document.getElementById('appContainer').classList.remove('hidden');
+      document.getElementById('appContainer').classList.add('flex');
+
+      if (!currentUser.isConfigured) {
+        openProfileModal(true);
+      } else {
+        applyTheme(currentUser.theme);
+      }
+      lucide.createIcons();
+      renderAll();
+    }
+
+    function handleLogout() {
+      document.getElementById('appContainer').classList.add('hidden');
+      document.getElementById('appContainer').classList.remove('flex');
+      document.getElementById('loginScreen').classList.remove('hidden');
+      setAuthMode('login'); // reset to login
+    }
+
+    // Tabs logic
+    function switchTab(tab) {
+      currentTab = tab;
+      const tabs = ['overview', 'expenses', 'goals'];
+      tabs.forEach(t => {
+        const pageEl = document.getElementById('tab' + capitalize(t));
+        const deskBtn = document.getElementById('deskTab' + capitalize(t));
+        const mobBtn = document.getElementById('mobTab' + capitalize(t));
+
+        if (t === tab) {
+          pageEl.classList.remove('hidden');
+          deskBtn.className = 'flex items-center gap-2 px-5 py-2.5 rounded-theme text-sm font-semibold transition-all bg-theme-accent text-white shadow-theme-glow';
+          mobBtn.className = 'flex flex-col items-center justify-center py-1 px-3 text-theme-accent font-bold scale-105';
+          mobBtn.querySelector('div').className = 'p-1.5 rounded-theme bg-theme-accentLight';
+        } else {
+          pageEl.classList.add('hidden');
+          deskBtn.className = 'flex items-center gap-2 px-5 py-2.5 rounded-theme text-sm font-semibold transition-all text-theme-muted hover:text-theme-text hover:bg-theme-subtle/70';
+          mobBtn.className = 'flex flex-col items-center justify-center py-1 px-3 text-theme-muted font-medium';
+          mobBtn.querySelector('div').className = 'p-1.5 rounded-theme';
+        }
+      });
+      lucide.createIcons();
+    }
+
+    function capitalize(s) {
+      return s.charAt(0).toUpperCase() + s.slice(1);
+    }
+
+    // Salary edit
+    function toggleEditSalary() {
+      const display = document.getElementById('salaryDisplay');
+      const form = document.getElementById('salaryEditForm');
+      display.classList.toggle('hidden');
+      form.classList.toggle('hidden');
+      form.classList.toggle('flex');
+    }
+
+    function saveSalary() {
+      const input = document.getElementById('salaryInput');
+      const val = parseFloat(input.value);
+      if (!isNaN(val) && val >= 0) {
+        monthlyIncome = val;
+        toggleEditSalary();
+        renderAll();
+      }
+    }
+
+    // Format BRL currency
+    function formatBRL(val) {
+      return val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    // Render Categories in Expense Form
+    function renderCategoryChips() {
+      const container = document.getElementById('categoryChips');
+      container.innerHTML = CATEGORIES.map(c => `
+        <button type="button" onclick="selectExpenseCategory('${c.id}')" id="catChip_${c.id}" class="flex items-center gap-2 p-2 rounded-theme text-xs font-medium border transition-all ${
+          selectedCategory === c.id
+            ? 'border-theme-accent bg-theme-accentLight text-theme-accent font-bold'
+            : 'border-theme-border/60 bg-theme-subtle/50 text-theme-muted hover:text-theme-text'
+        }">
+          <i data-lucide="${c.icon}" class="w-3.5 h-3.5"></i>
+          <span class="truncate">${c.label}</span>
+        </button>
+      `).join('');
+    }
+
+    function selectExpenseCategory(catId) {
+      selectedCategory = catId;
+      renderCategoryChips();
+      lucide.createIcons();
+    }
+
+    // Expenses Form Submit
+    document.getElementById('expenseForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = document.getElementById('expenseTitle').value;
+      const amount = parseFloat(document.getElementById('expenseAmount').value);
+      const date = document.getElementById('expenseDate').value || new Date().toISOString().split('T')[0];
+
+      if (!title || isNaN(amount) || amount <= 0) return;
+
+      transactions.unshift({
+        id: Date.now().toString(),
+        title: title.trim(),
+        amount: amount,
+        category: selectedCategory,
+        date: date
+      });
+
+      document.getElementById('expenseTitle').value = '';
+      document.getElementById('expenseAmount').value = '';
+      renderAll();
+    });
+
+    function deleteTransaction(id) {
+      transactions = transactions.filter(t => t.id !== id);
+      renderAll();
+    }
+
+    // Render Transactions List
+    function renderTransactions() {
+      const container = document.getElementById('txListContainer');
+      const countLabel = document.getElementById('txCountLabel');
+      const totalLabel = document.getElementById('txTotalLabel');
+
+      const total = transactions.reduce((acc, t) => acc + t.amount, 0);
+      countLabel.innerText = `${transactions.length} ${transactions.length === 1 ? 'registro' : 'registros'} neste mês`;
+      totalLabel.innerText = formatBRL(total);
+
+      if (transactions.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-8 text-theme-muted">
+            <p class="text-sm">Nenhuma despesa lançada até o momento.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = transactions.map(tx => {
+        const cat = CATEGORIES.find(c => c.id === tx.category) || CATEGORIES[7];
+        const dateFormatted = new Date(tx.date + 'T00:00:00').toLocaleDateString('pt-BR');
+        return `
+          <div class="py-3 flex items-center justify-between gap-3 group hover:bg-theme-subtle/40 px-2 rounded-theme transition-colors">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="p-2.5 rounded-theme bg-theme-subtle text-theme-accent shrink-0">
+                <i data-lucide="${cat.icon}" class="w-4 h-4"></i>
+              </div>
+              <div class="min-w-0">
+                <h4 class="text-sm font-semibold text-theme-text truncate">${tx.title}</h4>
+                <div class="flex items-center gap-2 text-xs text-theme-muted">
+                  <span>${cat.label}</span>
+                  <span>•</span>
+                  <span>${dateFormatted}</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 shrink-0">
+              <span class="text-sm sm:text-base font-bold text-theme-danger">- ${formatBRL(tx.amount)}</span>
+              <button onclick="deleteTransaction('${tx.id}')" class="p-1.5 rounded-theme text-theme-muted hover:text-theme-danger opacity-70 group-hover:opacity-100 transition-colors" title="Excluir">
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Goals Form & Rendering
+    function toggleAddGoalForm() {
+      const card = document.getElementById('newGoalCard');
+      card.classList.toggle('hidden');
+    }
+
+    document.getElementById('newGoalForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = document.getElementById('goalTitle').value;
+      const target = parseFloat(document.getElementById('goalTarget').value);
+      const current = parseFloat(document.getElementById('goalCurrent').value) || 0;
+
+      if (!title || isNaN(target) || target <= 0) return;
+
+      goals.push({
+        id: 'g_' + Date.now(),
+        title: title.trim(),
+        targetAmount: target,
+        currentAmount: current,
+        category: 'Sonho'
+      });
+
+      document.getElementById('goalTitle').value = '';
+      document.getElementById('goalTarget').value = '';
+      document.getElementById('goalCurrent').value = '0';
+      toggleAddGoalForm();
+      renderAll();
+    });
+
+    function deleteGoal(id) {
+      goals = goals.filter(g => g.id !== id);
+      renderAll();
+    }
+
+    function openDepositModal(goalId) {
+      currentDepositGoalId = goalId;
+      const goal = goals.find(g => g.id === goalId);
+      document.getElementById('depositTargetTitle').innerText = 'Meta: ' + (goal ? goal.title : '');
+      document.getElementById('depositAmount').value = '';
+      const modal = document.getElementById('depositModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeDepositModal() {
+      const modal = document.getElementById('depositModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    document.getElementById('depositForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const amount = parseFloat(document.getElementById('depositAmount').value);
+      if (!isNaN(amount) && amount > 0 && currentDepositGoalId) {
+        goals = goals.map(g => {
+          if (g.id === currentDepositGoalId) {
+            return { ...g, currentAmount: Math.min(g.targetAmount, g.currentAmount + amount) };
+          }
+          return g;
+        });
+        closeDepositModal();
+        renderAll();
+      }
+    });
+
+    function renderGoals() {
+      const grid = document.getElementById('goalsGrid');
+      if (goals.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full text-center py-10 text-theme-muted">
+            <p>Nenhuma meta cadastrada até o momento.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = goals.map(g => {
+        const percentage = Math.min(100, Math.max(0, Math.round((g.currentAmount / (g.targetAmount || 1)) * 100)));
+        const remaining = Math.max(0, g.targetAmount - g.currentAmount);
+        const isDone = g.currentAmount >= g.targetAmount;
+
+        return `
+          <div class="p-5 rounded-theme bg-theme-surface border ${isDone ? 'border-theme-success/60' : 'border-theme-border/60'} shadow-theme-card flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-3 mb-3">
+                <div class="flex items-center gap-3">
+                  <div class="p-2.5 rounded-theme ${isDone ? 'bg-theme-success/15 text-theme-success' : 'bg-theme-accentLight text-theme-accent'}">
+                    <i data-lucide="${isDone ? 'check-circle-2' : 'trophy'}" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-base font-bold leading-tight">${g.title}</h4>
+                    <span class="text-[11px] text-theme-muted font-medium">${g.category}</span>
+                  </div>
+                </div>
+                <button onclick="deleteGoal('${g.id}')" class="p-1.5 rounded-theme text-theme-muted hover:text-theme-danger" title="Excluir">
+                  <i data-lucide="trash-2" class="w-4 h-4"></i>
+                </button>
+              </div>
+
+              <!-- Quantias -->
+              <div class="grid grid-cols-2 gap-2 my-4 p-3 rounded-theme bg-theme-subtle/60 border border-theme-border/40">
+                <div>
+                  <span class="text-[10px] uppercase font-bold text-theme-muted block">Guardado</span>
+                  <span class="text-base font-extrabold text-theme-accent">${formatBRL(g.currentAmount)}</span>
+                </div>
+                <div class="text-right">
+                  <span class="text-[10px] uppercase font-bold text-theme-muted block">Alvo</span>
+                  <span class="text-base font-extrabold">${formatBRL(g.targetAmount)}</span>
+                </div>
+              </div>
+
+              <!-- Barra de Progresso Visual -->
+              <div class="space-y-1.5 mb-4">
+                <div class="flex justify-between items-center text-xs font-semibold">
+                  <span class="text-theme-muted">Progresso</span>
+                  <span class="font-bold ${isDone ? 'text-theme-success' : 'text-theme-accent'}">${percentage}%</span>
+                </div>
+                <div class="w-full bg-theme-subtle rounded-full h-3 overflow-hidden p-0.5 border border-theme-border/40">
+                  <div class="h-full bg-theme-accent rounded-full transition-all duration-500 shadow-theme-glow relative" style="width: ${percentage}%"></div>
+                </div>
+                <div class="text-[11px] text-theme-muted mt-1">
+                  ${isDone
+                    ? '<span class="text-theme-success font-semibold">✨ Meta conquistada com sucesso!</span>'
+                    : `Faltam <strong>${formatBRL(remaining)}</strong> para alcançar a meta`}
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-theme-border/40 flex items-center justify-between">
+              <span class="text-xs text-theme-muted">${isDone ? 'Meta alcançada' : 'Poupar agora'}</span>
+              <button onclick="openDepositModal('${g.id}')" class="px-3 py-1.5 rounded-theme ${isDone ? 'border border-theme-border text-theme-text' : 'bg-theme-accent text-white shadow-theme-glow'} text-xs font-bold flex items-center gap-1">
+                <i data-lucide="dollar-sign" class="w-3.5 h-3.5"></i>
+                <span>${isDone ? 'Bônus' : 'Guardar Valor'}</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Render Global Overview
+    function renderOverview() {
+      const totalExpenses = transactions.reduce((acc, t) => acc + t.amount, 0);
+      const balance = monthlyIncome - totalExpenses;
+      const spentPercent = monthlyIncome > 0 ? Math.min(100, Math.round((totalExpenses / monthlyIncome) * 100)) : 0;
+
+      document.getElementById('salaryDisplay').innerText = formatBRL(monthlyIncome);
+      document.getElementById('overviewTotalExpenses').innerText = formatBRL(totalExpenses);
+      document.getElementById('overviewSpentPercent').innerHTML = `<i data-lucide="percent" class="w-3.5 h-3.5 text-theme-danger"></i> Consumiu <strong>${spentPercent}%</strong> da renda`;
+
+      const balanceEl = document.getElementById('overviewCurrentBalance');
+      balanceEl.innerText = formatBRL(balance);
+      balanceEl.className = `text-3xl sm:text-4xl font-extrabold mt-1 ${balance >= 0 ? 'text-theme-success' : 'text-theme-danger'}`;
+    }
+
+    function renderAll() {
+      renderOverview();
+      renderTransactions();
+      renderGoals();
+      renderCategoryChips();
+      lucide.createIcons();
+    }
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('expenseDate').value = new Date().toISOString().split('T')[0];
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
